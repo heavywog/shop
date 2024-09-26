@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>heavywog</title>
+  <style>
+    @font-face {
+      font-family: 'Helvetica Neue Light';
+      font-weight: 300;
+      src: local('Helvetica Neue Light');
+    }
+
+    body {
+      font-family: 'Helvetica Neue Light', Helvetica, Arial, sans-serif;
+      background-image: url('https://i.ibb.co/j5QbZpK/background-image.png'); /* Background image */
+      background-size: cover; /* Stretch to fill the screen */
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevent scrolling from animation */
+      display: flex; /* Flex display for main container */
+    }
+
+    .container {
+      padding: 20px;
+      position: relative; /* Added for cart positioning */
+      z-index: 1; /* Ensure container is on top of animation */
+      display: flex; /* Flex display for alignment */
+      flex-direction: column; /* Stack elements vertically */
+      align-items: flex-start; /* Align items to the start */
+      flex: 1; /* Take remaining space on the left */
+    }
+
+    /* Store Title */
+    .heavywog-title {
+      text-align: left;
+      margin-bottom: 50px;
+      color: black;
+      font-size: 48px;
+      font-weight: 300; /* Light weight */
+      letter-spacing: 0.5px; /* Adjusted spacing */
+    }
+
+    /* Product Styling */
+    .product {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 10px;
+    }
+
+    .product img {
+      width: 400px; /* Width for higher resolution */
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .product-name {
+      font-size: 24px;
+      color: black; /* Reverted to black */
+      text-decoration: underline;
+      margin-bottom: 20px;
+      font-weight: 300; /* Light weight */
+    }
+
+    .product-price {
+      font-size: 20px;
+      color: black;
+      font-weight: 300; /* Light weight */
+    }
+
+    /* Red Button with Lowercase Text */
+    .product button {
+      padding: 10px 20px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      text-transform: lowercase;
+      font-weight: 300; /* Light weight */
+    }
+
+    .product button:hover {
+      background-color: darkred;
+    }
+
+    /* Cart Icon Styles */
+    .cart-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      color: darkblue; /* Dark royal blue */
+      font-size: 20px;
+      text-decoration: underline; /* Underline */
+    }
+
+    .cart-bubble {
+      background-color: darkblue; /* Dark royal blue */
+      color: white;
+      border-radius: 50%;
+      padding: 5px 10px;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-family: 'Helvetica Neue Light', sans-serif;
+      font-weight: 300; /* Light weight */
+      font-size: 14px;
+      display: none; /* Hidden by default */
+    }
+
+    /* Pop-up Notification Styles */
+    .notification {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: red; /* Red background */
+      color: white;
+      padding: 20px 30px;
+      border: none; /* No rounded corners */
+      font-family: 'Helvetica Neue Light', sans-serif;
+      font-weight: 300;
+      font-size: 24px; /* Larger font size */
+      display: none; /* Hidden by default */
+    }
+
+    /* Animation Styles */
+    .image-container {
+      position: absolute;
+      top: 50%;
+      left: 65%; /* Ensure images are 65% to the right of the screen */
+      transform: translate(-50%, -50%);
+      width: 300px; /* Image width */
+      height: auto;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      position: absolute;
+    }
+
+    #img1 {
+      display: block;
+    }
+
+    #img2 {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Cart Text -->
+    <div class="cart-icon">
+      cart
+      <div class="cart-bubble" id="cartCount">0</div>
+    </div>
+
+    <!-- Store Title -->
+    <div class="heavywog-title">heavywog</div>
+
+    <!-- Product Section -->
+    <div class="product">
+      <img src="https://i.ibb.co/fFvGYyC/IMG-2493.png" alt="Dirty Polo"> <!-- Updated image link -->
+      <div class="product-name" id="productName">dirty polo</div> <!-- Added id for product name -->
+      <div class="product-price">$50.00</div> <!-- Updated price -->
+      <button onclick="addToCart()">add to cart</button>
+    </div>
+
+    <!-- Notification Element -->
+    <div class="notification" id="notification">dirty polo added to cart</div>
+  </div>
+
+  <div class="image-container">
+      <img id="img1" src="https://i.ibb.co/tq2QwK3/IMG-2512.png" alt="Image 1">
+      <img id="img2" src="https://i.ibb.co/wWn69tn/IMG-2511.png" alt="Image 2">
+  </div>
+
+  <script>
+    let cartCount = 0;
+
+    function addToCart() {
+      cartCount++;
+      document.getElementById('cartCount').innerText = cartCount; // Update cart count
+      showNotification(); // Call notification function
+    }
+
+    function showNotification() {
+      const notification = document.getElementById('notification');
+      notification.style.display = 'block'; // Show notification
+      setTimeout(() => {
+        notification.style.display = 'none'; // Hide after 3 seconds
+      }, 3000); // Total time before hidden
+    }
+
+    // Image switching logic
+    let currentImage = 1;
+
+    setInterval(() => {
+      if (currentImage === 1) {
+        document.getElementById('img1').style.display = 'none';
+        document.getElementById('img2').style.display = 'block';
+        currentImage = 2;
+      } else {
+        document.getElementById('img2').style.display = 'none';
+        document.getElementById('img1').style.display = 'block';
+        currentImage = 1;
+      }
+    }, 500); // Switch every 0.5 seconds
+  </script>
+</body>
+</html>
