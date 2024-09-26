@@ -140,20 +140,15 @@
       align-items: flex-end; /* Align images to the right */
     }
 
-    img {
-      width: 300px; /* Ensure both images have the same width */
-      height: auto;
+    .image {
       position: absolute;
-      top: 0;
-      left: 0;
+      width: 100px; /* Width of images */
+      opacity: 0; /* Start invisible */
+      transition: opacity 0s; /* No transition for immediate visibility */
     }
 
-    #img1 {
-      display: block;
-    }
-
-    #img2 {
-      display: none;
+    .image.show {
+      opacity: 1; /* Visible */
     }
 
     /* Animation delay for spacing */
@@ -187,9 +182,21 @@
     <div class="notification" id="notification">dirty polo added to cart</div>
   </div>
 
-  <div class="image-container">
-    <img id="img1" src="https://i.ibb.co/tq2QwK3/IMG-2512.png" alt="Image 1">
-    <img id="img2" src="https://i.ibb.co/wWn69tn/IMG-2511.png" alt="Image 2">
+  <div class="image-container" id="imageContainer">
+    <!-- Existing Images -->
+    <img src="https://i.ibb.co/s5P68w1/Screenshot-2023-10-04-at-9-55-43-pm.png" class="image">
+    <img src="https://i.ibb.co/VMQP0sj/Screenshot-2023-11-07-at-4-24-16-pm.png" class="image">
+    <img src="https://i.ibb.co/Pt7ygCn/letter-h-icon-png-29.png" class="image">
+    <img src="https://i.ibb.co/SXPmyBz/IMG-5484.jpg" class="image">
+    <img src="https://i.ibb.co/kmrNfZg/drumloop-false-bottom-Cover-Art.jpg" class="image">
+    <img src="https://i.ibb.co/q5vX8jy/a6a1d49e43bd4924aae2db2ccf84a7bd.jpg" class="image">
+    <img src="https://i.ibb.co/TLh0LL0/gettyimages-123626510-612x612.jpg" class="image">
+    <img src="https://i.ibb.co/Tcp5cyf/tumblr-8eeae4f3dbca05c356f76e2aca17638e-3a540864-1280.jpg" class="image">
+    <img src="https://i.ibb.co/xzrKNq5/tumblr-6686637d0f1d41f515e732828a22a24a-2192f0a9-400.jpg" class="image">
+
+    <!-- New Images Added -->
+    <img src="https://i.ibb.co/tq2QwK3/IMG-2512.png" class="image"> <!-- First new image -->
+    <img src="https://i.ibb.co/wWn69tn/IMG-2511.png" class="image"> <!-- Second new image -->
   </div>
 
   <script>
@@ -209,33 +216,26 @@
       }, 3000); // Total time before hidden
     }
 
-    // Function to handle image alternation
-    let currentImage = 1;
-    setInterval(() => {
-      if (currentImage === 1) {
-        document.getElementById('img1').style.display = 'none';
-        document.getElementById('img2').style.display = 'block';
-        currentImage = 2;
-      } else {
-        document.getElementById('img2').style.display = 'none';
-        document.getElementById('img1').style.display = 'block';
-        currentImage = 1;
+    // Function to handle image scroll animations
+    const images = document.querySelectorAll('.image');
+    let currentIndex = 0;
+
+    function showNextImage() {
+      if (currentIndex < images.length) {
+        images[currentIndex].style.visibility = 'visible'; // Make visible before animation
+        images[currentIndex].classList.add('show'); // Show the current image
+        images[currentIndex].style.animation = 'move 10s linear'; // Animate the image down
+
+        setTimeout(() => {
+          images[currentIndex].classList.remove('show'); // Hide the current image after animation
+          images[currentIndex].style.visibility = 'hidden'; // Make invisible after animation
+          currentIndex++;
+          showNextImage(); // Show the next image in the sequence
+        }, 3000); // Delay for each image
       }
-    }, 500); // Switch every 0.5 seconds
-
-    // Function to change product name color every 0.5 seconds
-    function changeProductNameColor() {
-      const productName = document.getElementById('productName');
-      setInterval(() => {
-        const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-        productName.style.color = randomColor; // Apply random color
-      }, 500); // Change color every 0.5 seconds
     }
 
-    // Start animations on page load
-    window.onload = function() {
-      changeProductNameColor(); // Start color changing
-    }
+    showNextImage(); // Start the image animation
   </script>
 
 </body>
