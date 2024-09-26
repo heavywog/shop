@@ -183,7 +183,6 @@
   </div>
 
   <div class="image-container" id="imageContainer">
-    <!-- Existing Images -->
     <img src="https://i.ibb.co/s5P68w1/Screenshot-2023-10-04-at-9-55-43-pm.png" class="image">
     <img src="https://i.ibb.co/VMQP0sj/Screenshot-2023-11-07-at-4-24-16-pm.png" class="image">
     <img src="https://i.ibb.co/Pt7ygCn/letter-h-icon-png-29.png" class="image">
@@ -193,10 +192,6 @@
     <img src="https://i.ibb.co/TLh0LL0/gettyimages-123626510-612x612.jpg" class="image">
     <img src="https://i.ibb.co/Tcp5cyf/tumblr-8eeae4f3dbca05c356f76e2aca17638e-3a540864-1280.jpg" class="image">
     <img src="https://i.ibb.co/xzrKNq5/tumblr-6686637d0f1d41f515e732828a22a24a-2192f0a9-400.jpg" class="image">
-
-    <!-- New Images Added -->
-    <img src="https://i.ibb.co/tq2QwK3/IMG-2512.png" class="image"> <!-- First new image -->
-    <img src="https://i.ibb.co/wWn69tn/IMG-2511.png" class="image"> <!-- Second new image -->
   </div>
 
   <script>
@@ -230,13 +225,27 @@
           images[currentIndex].classList.remove('show'); // Hide the current image after animation
           images[currentIndex].style.visibility = 'hidden'; // Make invisible after animation
           currentIndex++;
-          showNextImage(); // Show the next image in the sequence
-        }, 3000); // Delay for each image
+          showNextImage(); // Show the next image
+        }, 10000); // Wait for the animation duration before showing the next
       }
     }
 
-    showNextImage(); // Start the image animation
+    // Start showing images on page load
+    window.onload = function() {
+      showNextImage(); // Start the animation
+      changeProductNameColor(); // Start color changing
+    }
+
+    // Function to change product name color every 0.5 seconds
+    function changeProductNameColor() {
+      const productName = document.getElementById('productName');
+      setInterval(() => {
+        const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+        productName.style.color = randomColor; // Apply random color
+      }, 500); // Change color every 0.5 seconds
+    }
   </script>
 
 </body>
 </html>
+
