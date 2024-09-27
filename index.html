@@ -13,35 +13,33 @@
 
     body {
       font-family: 'Helvetica Neue Light', Helvetica, Arial, sans-serif;
-      background-image: url('https://i.ibb.co/j5QbZpK/background-image.png'); /* Background image */
-      background-size: cover; /* Stretch to fill the screen */
+      background-image: url('https://i.ibb.co/j5QbZpK/background-image.png');
+      background-size: cover;
       margin: 0;
       padding: 0;
-      overflow: hidden; /* Prevent scrolling from animation */
-      display: flex; /* Flex display for main container */
+      overflow: hidden;
+      display: flex;
     }
 
     .container {
       padding: 20px;
-      position: relative; /* Added for cart positioning */
-      z-index: 1; /* Ensure container is on top of animation */
-      display: flex; /* Flex display for alignment */
-      flex-direction: column; /* Stack elements vertically */
-      align-items: flex-start; /* Align items to the start */
-      flex: 1; /* Take remaining space on the left */
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1;
     }
 
-    /* Store Title */
     .heavywog-title {
       text-align: left;
       margin-bottom: 50px;
       color: black;
       font-size: 48px;
-      font-weight: 300; /* Light weight */
-      letter-spacing: 0.5px; /* Adjusted spacing */
+      font-weight: 300;
+      letter-spacing: 0.5px;
     }
 
-    /* Product Styling */
     .product {
       display: flex;
       flex-direction: column;
@@ -50,26 +48,25 @@
     }
 
     .product img {
-      width: 400px; /* Width for higher resolution */
+      width: 400px;
       height: auto;
       margin-bottom: 10px;
     }
 
     .product-name {
       font-size: 24px;
-      color: black; /* Reverted to black */
+      color: black;
       text-decoration: underline;
       margin-bottom: 20px;
-      font-weight: 300; /* Light weight */
+      font-weight: 300;
     }
 
     .product-price {
       font-size: 20px;
       color: black;
-      font-weight: 300; /* Light weight */
+      font-weight: 300;
     }
 
-    /* Red Button with Lowercase Text */
     .product button {
       padding: 10px 20px;
       background-color: red;
@@ -79,27 +76,16 @@
       cursor: pointer;
       font-size: 16px;
       text-transform: lowercase;
-      font-weight: 300; /* Light weight */
+      font-weight: 300;
     }
 
     .product button:hover {
       background-color: darkred;
     }
 
-    /* Cart Icon Styles */
-    .cart-icon {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      color: darkblue; /* Dark royal blue */
-      font-size: 20px;
-      text-decoration: underline; /* Underline */
-    }
 
     .cart-bubble {
-      background-color: darkblue; /* Dark royal blue */
+      background-color: darkblue;
       color: white;
       border-radius: 50%;
       padding: 5px 10px;
@@ -107,51 +93,48 @@
       top: -10px;
       right: -10px;
       font-family: 'Helvetica Neue Light', sans-serif;
-      font-weight: 300; /* Light weight */
+      font-weight: 300;
       font-size: 14px;
-      display: none; /* Hidden by default */
+      display: none;
     }
 
-    /* Pop-up Notification Styles */
     .notification {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: red; /* Red background */
+      background-color: red;
       color: white;
       padding: 20px 30px;
-      border: none; /* No rounded corners */
+      border: none;
       font-family: 'Helvetica Neue Light', sans-serif;
       font-weight: 300;
-      font-size: 24px; /* Larger font size */
-      display: none; /* Hidden by default */
+      font-size: 24px;
+      display: none;
     }
 
-    /* Animation Styles */
     .image-container {
-      position: relative; /* Ensure stacking of images */
-      width: 400px; /* Set width for right side */
-      height: 100vh; /* Full viewport height */
-      overflow: hidden; /* Hide overflow */
-      z-index: 0; /* Ensure images are behind the container */
-      display: flex; /* Flex for alignment */
-      flex-direction: column; /* Stack images vertically */
-      align-items: flex-end; /* Align images to the right */
+      position: relative;
+      width: 400px;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
 
     .image {
       position: absolute;
-      width: 100px; /* Width of images */
-      opacity: 0; /* Start invisible */
-      transition: opacity 0s; /* No transition for immediate visibility */
+      width: 100px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
     .image.show {
-      opacity: 1; /* Visible */
+      opacity: 1;
     }
 
-    /* Animation delay for spacing */
     @keyframes move {
       0% { transform: translateY(-100%); }
       100% { transform: translateY(100vh); }
@@ -170,18 +153,14 @@
     <!-- Store Title -->
     <div class="heavywog-title">heavywog</div>
 
-    <!-- Product Section -->
-    <div class="product">
-      <img src="https://i.ibb.co/fFvGYyC/IMG-2493.png" alt="Dirty Polo"> <!-- Updated image link -->
-      <div class="product-name" id="productName">dirty polo</div> <!-- Added id for product name -->
-      <div class="product-price">$50.00</div> <!-- Updated price -->
-      <button onclick="addToCart()">add to cart</button>
-    </div>
+    <!-- Shopify Buy Button Integration -->
+    <div id='product-component-1727364687169'></div>
 
     <!-- Notification Element -->
     <div class="notification" id="notification">dirty polo added to cart</div>
   </div>
 
+  <!-- Image Animation -->
   <div class="image-container" id="imageContainer">
     <img src="https://i.ibb.co/s5P68w1/Screenshot-2023-10-04-at-9-55-43-pm.png" class="image">
     <img src="https://i.ibb.co/VMQP0sj/Screenshot-2023-11-07-at-4-24-16-pm.png" class="image">
@@ -199,52 +178,227 @@
 
     function addToCart() {
       cartCount++;
-      document.getElementById('cartCount').innerText = cartCount; // Update cart count
-      showNotification(); // Call notification function
+      document.getElementById('cartCount').style.display = 'block';
+      document.getElementById('cartCount').innerText = cartCount; 
+      showNotification();
     }
 
     function showNotification() {
       const notification = document.getElementById('notification');
-      notification.style.display = 'block'; // Show notification
+      notification.style.display = 'block';
       setTimeout(() => {
-        notification.style.display = 'none'; // Hide after 3 seconds
-      }, 3000); // Total time before hidden
+        notification.style.display = 'none';
+      }, 3000);
     }
 
-    // Function to handle image scroll animations
     const images = document.querySelectorAll('.image');
     let currentIndex = 0;
 
     function showNextImage() {
       if (currentIndex < images.length) {
-        images[currentIndex].style.visibility = 'visible'; // Make visible before animation
-        images[currentIndex].classList.add('show'); // Show the current image
-        images[currentIndex].style.animation = 'move 10s linear'; // Animate the image down
+        images[currentIndex].style.visibility = 'visible';
+        images[currentIndex].classList.add('show');
+        images[currentIndex].style.animation = 'move 10s linear';
 
         setTimeout(() => {
-          images[currentIndex].classList.remove('show'); // Hide the current image after animation
-          images[currentIndex].style.visibility = 'hidden'; // Make invisible after animation
+          images[currentIndex].classList.remove('show');
+          images[currentIndex].style.visibility = 'hidden';
           currentIndex++;
-          showNextImage(); // Show the next image
-        }, 10000); // Wait for the animation duration before showing the next
+          showNextImage();
+        }, 10000);
       }
     }
 
-    // Start showing images on page load
     window.onload = function() {
-      showNextImage(); // Start the animation
-      changeProductNameColor(); // Start color changing
-    }
-
-    // Function to change product name color every 0.5 seconds
-    function changeProductNameColor() {
-      const productName = document.getElementById('productName');
-      setInterval(() => {
-        const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-        productName.style.color = randomColor; // Apply random color
-      }, 500); // Change color every 0.5 seconds
+      showNextImage();
     }
   </script>
 
+  <!-- Shopify Buy Button Script -->
+  <script type="text/javascript">
+    (function () {
+      var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+      if (window.ShopifyBuy) {
+        if (window.ShopifyBuy.UI) {
+          ShopifyBuyInit();
+        } else {
+          loadScript();
+        }
+      } else {
+        loadScript();
+      }
+      function loadScript() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = scriptURL;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+        script.onload = ShopifyBuyInit;
+      }
+      function ShopifyBuyInit() {
+        var client = ShopifyBuy.buildClient({
+          domain: 'db3baf-53.myshopify.com',
+          storefrontAccessToken: 'd6caab97cac96a73a6141b54ddde3ce5',
+        });
+        ShopifyBuy.UI.onReady(client).then(function (ui) {
+          ui.createComponent('product', {
+            id: '9883246068006',
+            node: document.getElementById('product-component-1727364687169'),
+            moneyFormat: '%24%7B%7Bamount%7D%7D',
+            options: {
+              "product": {
+                "styles": {
+                  "product": {
+                    "@media (min-width: 601px)": {
+                      "max-width": "calc(25% - 20px)",
+                      "margin-left": "20px",
+                      "margin-bottom": "50px"
+                    }
+                  },
+                  "button": {
+                    "font-size": "18px",
+                    "padding-top": "17px",
+                    "padding-bottom": "17px",
+                    ":hover": {
+                      "background-color": "#0046e6"
+                    },
+                    "background-color": "#004eff",
+                    ":focus": {
+                      "background-color": "#0046e6"
+                    },
+                    "border-radius": "10px"
+                  },
+                  "title": {
+                    "font-size": "26px"
+                  },
+                  "price": {
+                    "font-size": "18px"
+                  }
+                },
+                "text": {
+                  "button": "add to cart"
+                },
+                "googleFonts": [
+                  "Helvetica Neue"
+                ]
+              },
+              "cart": {
+                "styles": {
+                  "button": {
+                    "font-size": "18px",
+                    "padding-top": "17px",
+                    "padding-bottom": "17px"
+                  },
+                  "footer": {
+                    "background-color": "#ffffff"
+                  }
+                },
+                "text": {
+                  "total": "Subtotal",
+                  "button": "Checkout"
+                },
+                "googleFonts": [
+                  "Helvetica Neue"
+                ]
+              },
+              "modalProduct": {
+                "styles": {
+                  "product": {
+                    "@media (min-width: 601px)": {
+                      "max-width": "100%",
+                      "margin-left": "0px",
+                      "margin-bottom": "0px"
+                    }
+                  },
+                  "button": {
+                    "font-size": "18px",
+                    "padding-top": "17px",
+                    "padding-bottom": "17px",
+                    ":hover": {
+                      "background-color": "#0046e6"
+                    },
+                    "background-color": "#004eff",
+                    ":focus": {
+                      "background-color": "#0046e6"
+                    },
+                    "border-radius": "10px"
+                  },
+                  "title": {
+                    "font-size": "26px"
+                  },
+                  "price": {
+                    "font-size": "18px"
+                  }
+                },
+                "googleFonts": [
+                  "Helvetica Neue"
+                ]
+              },
+              "toggle": {
+                "styles": {
+                  "toggle": {
+                    "font-family": "Helvetica Neue",
+                    "background-color": "#004eff",
+                    ":hover": {
+                      "background-color": "#0046e6"
+                    },
+                    ":focus": {
+                      "background-color": "#0046e6"
+                    }
+                  },
+                  "count": {
+                    "font-size": "18px"
+                  }
+                },
+                "googleFonts": [
+                  "Helvetica Neue"
+                ]
+              },
+              "lineItem": {
+                "styles": {
+                  "variantTitle": {
+                    "color": "#004eff"
+                  },
+                  "title": {
+                    "color": "#004eff"
+                  },
+                  "price": {
+                    "color": "#004eff"
+                  },
+                  "fullPrice": {
+                    "color": "#004eff"
+                  },
+                  "discount": {
+                    "color": "#004eff"
+                  },
+                  "discountIcon": {
+                    "fill": "#004eff"
+                  },
+                  "quantity": {
+                    "color": "#004eff"
+                  },
+                  "quantityIncrement": {
+                    "color": "#004eff",
+                    "border-color": "#004eff"
+                  },
+                  "quantityDecrement": {
+                    "color": "#004eff",
+                    "border-color": "#004eff"
+                  },
+                  "quantityInput": {
+                    "color": "#004eff",
+                    "border-color": "#004eff"
+                  }
+                },
+                "googleFonts": [
+                  "Helvetica Neue"
+                ]
+              }
+            }
+          });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
+
